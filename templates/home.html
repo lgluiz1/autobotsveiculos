@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% for carro in carros %}
+        <div class="card">
+            <img src="{{ carro.img_upload.url }}" alt="{{ carro.modelo }}">
+            <div class="card-content">
+            <h3>{{ carro.marca }} {{ carro.modelo }}</h3>
+            <p>Ano: {{ carro.ano }} | {{ carro.cambio }} | {{ carro.combustivel }}</p>
+            <p>Preço: R$ {{ carro.preco }}</p>
+            <a href="#" class="btn">Ver Detalhes</a>
+            </div>
+        </div>
+    {% empty %}
+        <p>Nenhum veículo disponível no momento.</p>
+    {% endfor %}
+   
+       
+       
+{% endblock %}
