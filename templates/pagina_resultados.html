@@ -1,0 +1,115 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/pagina_resultados.css' %}">
+{% endblock head %}
+{% block content %}
+<section class="container-filtros-veiculos">
+    <aside class="filtros">
+        <h3>Filtros</h3>
+
+        <!-- Marca -->
+        <label for="marca">Marca</label>
+        <select id="marca" name="marca" onchange="aplicarFiltro()">
+            <option value="">Todas</option>
+            {% for ma in marcas %}
+                <option value="{{ ma }}" {% if marca_selecionada == ma %}selected{% endif %}>
+                    {{ ma }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <!-- Modelo -->
+        <label for="modelo">Modelo</label>
+        <select id="modelo" name="modelo" onchange="aplicarFiltro()">
+            <option value="">Todos</option>
+            {% for modelo in modelos %}
+                <option value="{{ modelo }}" {% if modelo_selecionado == modelo %}selected{% endif %}>
+                    {{ modelo }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <!-- Ano -->
+        <label for="ano">Ano</label>
+        <select id="ano" name="ano" onchange="aplicarFiltro()">
+            <option value="">Todos</option>
+            {% for ano in anos %}
+                <option value="{{ ano }}" {% if ano_selecionado == ano %}selected{% endif %}>
+                    {{ ano }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <!-- Preço -->
+        <label for="preco_min">Preço Mínimo</label>
+        <input class="input_preco" type="number" id="preco_min" name="preco_min" value="{{ preco_min }}" placeholder="Ex: 30000">
+
+        <label for="preco_max">Preço Máximo</label>
+        <input class="input_preco" type="number" id="preco_max" name="preco_max" value="{{ preco_max }}" placeholder="Ex: 100000">
+
+        <button onclick="aplicarFiltro()">Aplicar Filtros</button>
+        <button onclick="limparFiltros()">Limpar</button>
+    </aside>
+
+    <main class="lista-veiculos">
+        <div class="header-lista">
+            <p>Mostrando <span style="color: #ffcc00;">{{ carros|length }}</span> veículos</p>
+            <select id="ordenar" onchange="aplicarFiltro()">
+                <option value="">Ordenar por</option>
+                <option value="preco_asc" {% if ordenar == 'preco_asc' %}selected{% endif %}>Menor Preço</option>
+                <option value="preco_desc" {% if ordenar == 'preco_desc' %}selected{% endif %}>Maior Preço</option>
+                <option value="ano_desc" {% if ordenar == 'ano_desc' %}selected{% endif %}>Mais Novos</option>
+                <option value="ano_asc" {% if ordenar == 'ano_asc' %}selected{% endif %}>Mais Antigos</option>
+            </select>
+        </div>
+
+        {% for carro in carros %}
+        <div class="card-veiculo">
+            <div class="img-veiculo">
+                <img src="{{ carro.imagem_principal.url }}" alt="{{ carro.nome }}">
+            </div>
+            <div class="info-veiculo">
+                <h2>{{ carro.marca }} {{ carro.modelo }}</h2>
+                <p class="preco">R$ {{ carro.preco|floatformat:2 }}</p>
+                <div class="detalhes">
+                    <span>{{ carro.ano }}</span>
+                    <span>{{ carro.km }}Km</span>
+                    <span>{{ carro.cor }}</span>
+                    <span>{{ carro.cambio }}</span>
+                </div>
+                <a href="{% url 'detalhes' carro.id %}" class="botao-detalhes">+ Ver Detalhes</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>Nenhum veículo encontrado.</p>
+        {% endfor %}
+    </main>
+</section>
+
+<script>
+    function aplicarFiltro() {
+  const marca = document.getElementById('marca').value;
+  const modelo = document.getElementById('modelo').value;
+  const ano = document.getElementById('ano').value;
+  const preco_min = document.getElementById('preco_min').value;
+  const preco_max = document.getElementById('preco_max').value;
+  const ordenar = document.getElementById('ordenar').value;
+
+  let url = `/pesquisa/?`;
+
+  if (marca) url += `marca=${marca}&`;
+  if (modelo) url += `modelo=${modelo}&`;
+  if (ano) url += `ano=${ano}&`;
+  if (preco_min) url += `preco_min=${preco_min}&`;
+  if (preco_max) url += `preco_max=${preco_max}&`;
+  if (ordenar) url += `ordenar=${ordenar}`;
+
+  window.location.href = url;
+}
+
+function limparFiltros() {
+  window.location.href = '/pesquisa/';
+}
+</script>
+{% endblock %}

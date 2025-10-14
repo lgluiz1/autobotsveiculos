@@ -4,7 +4,7 @@ from django.db import models
 # Marcas de carros
 class Marca(models.Model):
     nome = models.CharField(max_length=100)
-    img_upload = models.ImageField(upload_to='marcas/')
+    img_upload = models.ImageField(upload_to='marcas/',null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -13,7 +13,7 @@ class Marca(models.Model):
 class Modelo(models.Model):
     nome = models.CharField(max_length=100)
     marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
-    img_upload = models.ImageField(upload_to='modelos/')
+    img_upload = models.ImageField(upload_to='modelos/' ,null=True, blank=True)
 
     def __str__(self):
         return f"{self.marca.nome} {self.nome}"
@@ -39,7 +39,13 @@ class Opcional(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
+# ano
+class Ano(models.Model):
+    ano = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.ano 
 # Carros
 class Carro(models.Model):
     nome = models.CharField(max_length=100)
@@ -55,6 +61,8 @@ class Carro(models.Model):
     preco_ativo = models.BooleanField(default=True)    
     disponivel = models.BooleanField(default=True)
     informacoes = models.TextField(blank=True)
+    destaque = models.BooleanField(default=False, null=True, blank=True)
+    promocao = models.BooleanField(default=False,null=True, blank=True)
 
     # Carrega mmais de uma imagem
     imagem_principal = models.ImageField(upload_to='carros/')

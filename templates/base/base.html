@@ -56,6 +56,7 @@
         align-items: center;
         text-align: center;
         overflow: hidden;
+        z-index: -1;
     }
 
     .hero video {
@@ -212,7 +213,7 @@
     <!-- Menu de navegação -->
     <nav id="nav-links">
         <a href="#">Quem Somos</a>
-        <a href="#">Veículos</a>            
+        <a href="{% url 'pesquisa' %}">Veículos</a>            
         <a href="#">Financiamento</a>
         <a href="#">Venda seu carro</a> 
     </nav>

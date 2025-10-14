@@ -4,12 +4,14 @@
     font-size: 30px;
     color: #ffcc00;
     cursor: pointer;
+    z-index: 15;
 }
 
 /* Menu padrão (desktop) */
 #nav-links {
     display: flex;
     gap: 20px;
+    z-index: 15;
 }
 
 /* ===================== RESPONSIVO ===================== */
@@ -17,6 +19,7 @@
     /* Mostra o botão hambúrguer */
     .hamburger {
         display: block;
+        z-index: 15;
     }
 
     /* Esconde o menu inicialmente */
@@ -29,6 +32,7 @@
         right: 0;
         width: 200px;
         padding: 20px;
+        z-index: 15;
         border-left: 2px solid #ffcc00;
         border-bottom: 2px solid #ffcc00;
     }
@@ -36,10 +40,12 @@
     #nav-links a {
         margin: 10px 0;
         display: block;
+        z-index: 15;
     }
 
     /* Quando ativado */
     #nav-links.show {
         display: flex;
+        z-index: 15;
     }
 }
