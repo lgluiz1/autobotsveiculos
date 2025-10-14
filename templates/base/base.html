@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autobots Veículos</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/menumobile.css' %}">
+    {% block head %}{% endblock head %}
     <style>
         body {
             margin: 0;
@@ -14,6 +16,9 @@
             background: radial-gradient(circle, #000000 70%, #1a1a1a 100%);
             color: #fff;
             min-height: 100vh;
+        }
+        .text-color{
+            color: #ffcc00;
         }
 
         header {
@@ -93,17 +98,42 @@
     .formulario h1{
         color: #000000;
     }
+    .container {
+        margin-top: 180px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
         .veiculos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             padding: 40px;
-            margin-top: 100px;
+            
+        }
+        .btn-card {
+            background-color: #ffcc00;
+            color: #000;
+            font-family: 'Orbitron', sans-serif;
+            transition: transform 1s;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .btn-card:hover {
+            background-color: #000;
+            color: #ffcc00;
         }
 
         .card {
             background: #111;
-            border: 1px solid #333;
+            border: 2px solid #333;
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s;
@@ -164,65 +194,40 @@
 </head>
 <body>
     <header>
-        {% if logo %}
-        <div class="logo">
-    <img src="{{ logo.img_upload.url }}" alt="Logo do site" />
-    <h2>Autobots Veículos</h2>
+    {% if logo %}
+    <div class="logo">
+        <a class="logo" href="{% url 'home' %}" style="text-decoration: none;">
+        <img src="{{ logo.img_upload.url }}" alt="Logo do site" />
+        <h2>Autobots Veículos</h2></a>
     </div>
-{% else %}
-    <span>Logo não configurada</span>
-{% endif %}
-        <nav>
-            <a href="#">Início</a>
-            <a href="#">Veículos</a>
-            <a href="#">Contato</a>
-        </nav>
-    </header>
-    <div style="position: relative; display: flex; align-items: center; justify-content: center;">
-    <section class="hero">
-    <video autoplay loop muted playsinline>
-        <source src="{% static 'video/video.webm' %}" type="video/webm">
-        Seu navegador não suporta vídeo.
-    </video>
-    <h1>Autobots Veículos</h1>
-    <p>Transformando o jeito de comprar seu carro!</p>
-</section>
-    <section class="formulario">
-        <form action="">
-            <h1>Encontre o carro perfeito <span style="color: #ffcc00;">Melhor preço</span></h1>
-            <div>
-                <select name="marca" id="">
-                    <option value="">Marca</option>
-                    {% for marca in marcas %}
-                        <option value="{{ marca.id }}">{{ marca.nome }}</option>
-                    {% endfor %}
-                </select>
-                <select name="modelo" id="">
-                    <option value="">Modelo</option>
-                    {% for modelo in modelos %}
-                        <option value="{{ modelo.id }}">{{ modelo.nome }}</option>
-                    {% endfor %}
-                </select>
-                <select name="preco-max" id="">
-                    <option value="">Preço Máximo</option>
-                    {% for preco in precos %}
-                        <option value="{{ preco.id }}">{{ preco.preco }}</option>
-                    {% endfor %}
-                </select>
-                <button>Localizar</button>
-            </div>
-        </form>
-        
-    </section>
-    </div>
-    <section class="veiculos">
-        {% block content %}
-        {% endblock %}
-        
-    </section>
+    {% else %}
+        <span>Logo não configurada</span>
+    {% endif %}
 
+    <!-- Botão hambúrguer -->
+    <div class="hamburger" onclick="toggleMenu()">
+        &#9776;
+    </div>
+
+    <!-- Menu de navegação -->
+    <nav id="nav-links">
+        <a href="#">Quem Somos</a>
+        <a href="#">Veículos</a>            
+        <a href="#">Financiamento</a>
+        <a href="#">Venda seu carro</a> 
+    </nav>
+</header>
+
+   {% block content %}
+   {% endblock content %}
     <footer>
         © 2025 Autobots Veículos | Desenvolvido com 💛 <a href="#">Luiz.Tech</a>
     </footer>
 </body>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-links');
+        nav.classList.toggle('show');
+    }
+</script>
 </html>

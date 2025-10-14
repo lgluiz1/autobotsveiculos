@@ -57,8 +57,16 @@ class Carro(models.Model):
     informacoes = models.TextField(blank=True)
 
     # Carrega mmais de uma imagem
-    img_upload = models.ImageField(upload_to='carros/')
+    imagem_principal = models.ImageField(upload_to='carros/')
     
 
     def __str__(self):
         return f"{self.modelo.marca.nome} {self.modelo.nome} - {self.ano}"
+    
+
+class ImagemCarro(models.Model):
+    carro = models.ForeignKey(Carro, on_delete=models.CASCADE, related_name='imagens')
+    arquivo = models.ImageField(upload_to='carros/galeria/')
+
+    def __str__(self):
+        return f"Imagem de {self.carro.nome}"

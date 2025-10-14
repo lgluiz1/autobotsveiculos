@@ -1,0 +1,198 @@
+    .carro-detalhe-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .carro-galeria {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.carro-galeria img#imagemPrincipal {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.galeria-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 2rem;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.galeria-btn.prev { left: 10px; }
+.galeria-btn.next { right: 10px; }
+
+.thumbs {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.thumbs img {
+  width: 100px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.thumbs img:hover, .thumbs img.active-thumb {
+  opacity: 1;
+  border: 2px solid yellow;
+}
+    .dados-carro {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .dados-carro div {
+        background: #111;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #FFD700;
+    }
+
+    /* ========================= LADO DIREITO ========================= */
+    .carro-info {
+        background: #111;
+        padding: 20px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .preco {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #FFD700;
+        text-align: center;
+    }
+
+    .form-proposta {
+        display: flex;
+  flex-direction: column;
+  align-items: center;   /* horizontal */
+  justify-content: center; /* vertical se quiser */
+  width: 100%;
+  max-width: 350px; /* opcional */
+  margin: 0 auto;
+    }
+
+    .form-proposta input,
+    .form-proposta textarea {
+        width: 100%;
+        background: #000;
+        border: 1px solid #333;
+        padding: 10px;
+        color: #fff;
+        margin-top: 5px;
+        border-radius: 6px;
+    }
+
+    .form-proposta textarea {
+        resize: none;
+    }
+
+    .form-proposta button {
+        width: 100%;
+        background: #FFD700;
+        color: #000;
+        font-weight: bold;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .form-proposta button:hover {
+        background: #e6c200;
+    }
+
+    .endereco-contato {
+        text-align: center;
+        color: #fff;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+
+    /* ========================= CARACTERÍSTICAS ========================= */
+    .caracteristicas,
+    .opcionais {
+        max-width: 1200px;
+        margin: 1.5rem auto;
+        background: #111;
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .caracteristicas h2,
+    .opcionais h2 {
+        color: #FFD700;
+        margin-bottom: 1rem;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .tags span {
+        background: #000;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #fff;
+    }
+
+    /* ========================= RESPONSIVO ========================= */
+    @media (max-width: 960px) {
+        .carro-detalhe-container {
+            grid-template-columns: 1fr;
+        }
+
+        .preco {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .thumbs img {
+            width: 70px;
+            height: 50px;
+        }
+
+        .preco {
+            font-size: 1.5rem;
+        }
+
+        .tags span {
+            font-size: 0.8rem;
+            padding: 6px 10px;
+        }
+    }

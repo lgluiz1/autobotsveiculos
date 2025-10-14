@@ -1,0 +1,45 @@
+/* Oculta o botão hambúrguer em telas grandes */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    color: #ffcc00;
+    cursor: pointer;
+}
+
+/* Menu padrão (desktop) */
+#nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+/* ===================== RESPONSIVO ===================== */
+@media (max-width: 768px) {
+    /* Mostra o botão hambúrguer */
+    .hamburger {
+        display: block;
+    }
+
+    /* Esconde o menu inicialmente */
+    #nav-links {
+        display: none;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 100px;  /* logo abaixo do header */
+        right: 0;
+        width: 200px;
+        padding: 20px;
+        border-left: 2px solid #ffcc00;
+        border-bottom: 2px solid #ffcc00;
+    }
+
+    #nav-links a {
+        margin: 10px 0;
+        display: block;
+    }
+
+    /* Quando ativado */
+    #nav-links.show {
+        display: flex;
+    }
+}

@@ -1,0 +1,107 @@
+{% extends 'base/base.html' %}
+   {% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/detalhe_carro.css' %}">
+{% endblock head %}
+{% block content %}
+<div class="carro-detalhe-container">
+   <!-- GALERIA -->
+<div class="carro-galeria">
+    <button class="galeria-btn prev" onclick="mudarImagem(-1)">&#10094;</button>
+
+    <img id="imagemPrincipal" src="{{ carro.imagem_principal.url }}" alt="{{ carro.nome }}">
+
+    <button class="galeria-btn next" onclick="mudarImagem(1)">&#10095;</button>
+
+    <div class="thumbs">
+        {% for imagem in carro.imagens.all %}
+            <img src="{{ imagem.arquivo.url }}" alt="" onclick="trocarImagem(this)">
+        {% endfor %}
+    </div>
+
+    <div class="dados-carro">
+        <div>Ano {{ carro.ano }}</div>
+        <div>Câmbio {{ carro.cambio }}</div>
+        <div>{{ carro.combustivel }}</div>
+        <div>{{ carro.km }} km</div>
+    </div>
+</div>
+
+    <!-- INFO -->
+    <div class="carro-info">
+        <div class="preco">R$ {{ carro.preco|floatformat:2 }}</div>
+        <form class="form-proposta" method="post" action="">
+            {% csrf_token %}
+            <input type="text" name="nome" placeholder="Nome" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="telefone" placeholder="Telefone" required>
+            <textarea name="mensagem" rows="4" placeholder="Mensagem"></textarea>
+            <button type="submit">Enviar Proposta</button>
+        </form>
+        <div class="endereco-contato">
+            📞 {{ contatos.telefone }}<br>
+            📍 {{ endereco.rua }}, {{ endereco.numero }} - {{ endereco.cidade }} / {{ endereco.estado }}
+        </div>
+    </div>
+</div>
+
+<!-- CARACTERÍSTICAS -->
+<div class="caracteristicas">
+    <h2>Características</h2>
+    <div class="tags">
+        {% for item in carro.caracteristicas.all %}
+            <span>{{ item.nome }}</span>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- OPCIONAIS -->
+<div class="opcionais">
+    <h2>Opcionais</h2>
+    <div class="tags">
+        {% for item in carro.opcionais.all %}
+            <span>{{ item.nome }}</span>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function trocarImagem(el) {
+        document.getElementById('imagemPrincipal').src = el.src;
+    }
+
+
+    let imagens = Array.from(document.querySelectorAll('.thumbs img'));
+let imagemPrincipal = document.getElementById('imagemPrincipal');
+let indexAtual = 0;
+
+// Atualiza imagem principal e destaque na miniatura
+function atualizarImagem(i) {
+  imagens.forEach(img => img.classList.remove('active-thumb'));
+  imagens[i].classList.add('active-thumb');
+  imagemPrincipal.src = imagens[i].src;
+}
+
+// Trocar imagem ao clicar nas miniaturas
+function trocarImagem(img) {
+  indexAtual = imagens.indexOf(img);
+  atualizarImagem(indexAtual);
+}
+
+// Botões < >
+function mudarImagem(direcao) {
+  indexAtual += direcao;
+  if (indexAtual < 0) indexAtual = imagens.length - 1;
+  if (indexAtual >= imagens.length) indexAtual = 0;
+  atualizarImagem(indexAtual);
+}
+
+// Ativar a primeira miniatura ao carregar
+if (imagens.length > 0) {
+  imagens[0].classList.add('active-thumb');
+}
+
+</script>
+
+
+{% endblock %}

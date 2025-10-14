@@ -1,20 +1,65 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block content %}
+     <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+    <section class="hero">
+    <video autoplay loop muted playsinline>
+        <source src="{% static 'video/video.webm' %}" type="video/webm">
+        Seu navegador não suporta vídeo.
+    </video>
+    <h1>Autobots Veículos</h1>
+    <p>Transformando o jeito de comprar seu carro!</p>
+</section>
+    <section class="formulario">
+        <form action="">
+            <h1>Encontre o carro perfeito <span style="color: #ffcc00;">Melhor preço</span></h1>
+            <div>
+                <select name="marca" id="">
+                    <option value="">Marca</option>
+                    {% for marca in marcas %}
+                        <option value="{{ marca.id }}">{{ marca.nome }}</option>
+                    {% endfor %}
+                </select>
+                <select name="modelo" id="">
+                    <option value="">Modelo</option>
+                    {% for modelo in modelos %}
+                        <option value="{{ modelo.id }}">{{ modelo.nome }}</option>
+                    {% endfor %}
+                </select>
+                <select name="preco-max" id="">
+                    <option value="">Preço Máximo</option>
+                    {% for preco in precos %}
+                        <option value="{{ preco.id }}">{{ preco.preco }}</option>
+                    {% endfor %}
+                </select>
+                <button>Localizar</button>
+            </div>
+        </form>
+        
+    </section>
+    </div>
+    <div class="container">
+        <h1 class="text-color">Ofertas Imperdíveis</h1>
+    
+    <section class="veiculos">
+        
     {% for carro in carros %}
-        <div class="card">
-            <img src="{{ carro.img_upload.url }}" alt="{{ carro.modelo }}">
+        <div class="card">            
+            <img src="{{ carro.imagem_principal.url }}" alt="{{ carro.modelo }}">
             <div class="card-content">
             <h3>{{ carro.marca }} {{ carro.modelo }}</h3>
             <p>Ano: {{ carro.ano }} | {{ carro.cambio }} | {{ carro.combustivel }}</p>
             <p>Preço: R$ {{ carro.preco }}</p>
-            <a href="#" class="btn">Ver Detalhes</a>
+            <a href="{% url 'detalhes' carro.id %}" class="btn-card">Ver Detalhes</a>
             </div>
         </div>
     {% empty %}
         <p>Nenhum veículo disponível no momento.</p>
     {% endfor %}
-   
+        
+    </section>
+    </div>
        
        
 {% endblock %}
