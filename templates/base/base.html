@@ -1,7 +1,7 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,8 @@
             color: #fff;
             min-height: 100vh;
         }
-        .text-color{
+
+        .text-color {
             color: #ffcc00;
         }
 
@@ -47,72 +48,121 @@
         }
 
         .hero {
-        position: relative;
-        width: 100%;
-        height: 100vh; /* ocupa toda a altura da tela */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-        z-index: -1;
-    }
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* ocupa toda a altura da tela */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            z-index: -1;
+        }
 
-    .hero video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* mantém proporção e cobre a tela inteira */
-        z-index: -1; /* fica atrás do conteúdo */
-    }
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* mantém proporção e cobre a tela inteira */
+            z-index: -1;
+            /* fica atrás do conteúdo */
+        }
 
-    .hero h1,
-    .hero p {
-        position: relative;
-        z-index: 1;
-        color: #ffcc00;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* melhor contraste sobre o vídeo */
-    }
+        .hero h1,
+        .hero p {
+            position: relative;
+            z-index: 1;
+            color: #ffcc00;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            /* melhor contraste sobre o vídeo */
+        }
 
-    .hero h1 {
-        font-size: 3em;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
 
-    .hero p {
-        font-size: 1.2em;
-        color: #ccc;
-    }
-    .formulario{
-        position: absolute;
-        background: #ffffff;
-        border-radius: 10px;
-        z-index: 1;
-        top: 93%;   
-        width: 70%;
-        padding: 20px;
-    }
-    .formulario h1{
-        color: #000000;
-    }
-    .container {
-        margin-top: 180px;
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        width: 100%;
-    }
+        .hero p {
+            font-size: 1.2em;
+            color: #ccc;
+        }
+
+        .formulario {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 10px;
+            z-index: 1;
+            top: 93%;
+            width: 70%;
+            padding: 20px;
+        }
+
+        .formulario h1 {
+            color: #000000;
+        }
+
+        section.formulario h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        section.formulario div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        section.formulario select,
+        section.formulario button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        section.formulario select {
+            color: #000;
+            border: #ffcc00 2px solid;
+            min-width: 120px;
+        }
+
+        section.formulario button {
+            background: #ffd000;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        section.formulario button:hover {
+            background: #ffcc00;
+        }
+
+        .container {
+            margin-top: 150px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+        }
+
         .veiculos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             padding: 40px;
-            
+
         }
+
         .btn-card {
             background-color: #ffcc00;
             color: #000;
@@ -172,18 +222,21 @@
             border-top: 2px solid #ffcc00;
             color: #888;
         }
+
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
+
         .logo h2 {
             margin: 0;
             color: #ffcc00;
             font-size: 1.3em;
         }
-        .video{
+
+        .video {
             z-index: -1;
         }
 
@@ -191,36 +244,54 @@
             color: #ffcc00;
             text-decoration: none;
         }
+
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 50%;
+            }
+        }
+        @media (max-width: 500px) {
+            .container {
+                margin-top: 50%;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                margin-top: 130%;
+            }
+        }
     </style>
 </head>
+
 <body>
     <header>
-    {% if logo %}
-    <div class="logo">
-        <a class="logo" href="{% url 'home' %}" style="text-decoration: none;">
-        <img src="{{ logo.img_upload.url }}" alt="Logo do site" />
-        <h2>Autobots Veículos</h2></a>
-    </div>
-    {% else %}
+        {% if logo %}
+        <div class="logo">
+            <a class="logo" href="{% url 'home' %}" style="text-decoration: none;">
+                <img src="{{ logo.img_upload.url }}" alt="Logo do site" />
+                <h2>Autobots Veículos</h2>
+            </a>
+        </div>
+        {% else %}
         <span>Logo não configurada</span>
-    {% endif %}
+        {% endif %}
 
-    <!-- Botão hambúrguer -->
-    <div class="hamburger" onclick="toggleMenu()">
-        &#9776;
-    </div>
+        <!-- Botão hambúrguer -->
+        <div class="hamburger" onclick="toggleMenu()">
+            &#9776;
+        </div>
 
-    <!-- Menu de navegação -->
-    <nav id="nav-links">
-        <a href="#">Quem Somos</a>
-        <a href="{% url 'pesquisa' %}">Veículos</a>            
-        <a href="#">Financiamento</a>
-        <a href="#">Venda seu carro</a> 
-    </nav>
-</header>
+        <!-- Menu de navegação -->
+        <nav id="nav-links">
+            <a href="#">Quem Somos</a>
+            <a href="{% url 'pesquisa' %}">Veículos</a>
+            <a href="#">Financiamento</a>
+            <a href="#">Venda seu carro</a>
+        </nav>
+    </header>
 
-   {% block content %}
-   {% endblock content %}
+    {% block content %}
+    {% endblock content %}
     <footer>
         © 2025 Autobots Veículos | Desenvolvido com 💛 <a href="#">Luiz.Tech</a>
     </footer>
@@ -231,4 +302,5 @@
         nav.classList.toggle('show');
     }
 </script>
+
 </html>
