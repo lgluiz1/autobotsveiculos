@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # apps
     'agencia',
     'configuracao',
+    'newletter',
+    'mensagens'
 ]
 
 MIDDLEWARE = [

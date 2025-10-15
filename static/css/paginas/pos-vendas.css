@@ -163,3 +163,22 @@
         .reseller-link a:hover {
             text-decoration: underline;
         }
+
+/* =================================== */
+/* ==  INÍCIO DA RESPONSIVIDADE     == */
+/* =================================== */
+
+/* Telas de Tablet */
+@media (max-width: 767px) {
+    .header-posvenda {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+/* Telas de Desktop */
+@media (min-width: 992px) {
+    
+}

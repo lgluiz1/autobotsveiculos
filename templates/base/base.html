@@ -308,7 +308,7 @@
                     <h4>Seu veículo</h4>
                     <ul>
                         <li><a href="{% url 'pesquisa' %}">Encontre seu veículo</a></li>
-                        <li><a href="#">Nossas Lojas</a></li>
+                        <li><a href="{% url 'nossas_lojas' %}">Nossas Lojas</a></li>
                         <li><a href="{% url 'pesquisa' %}">Promoções</a></li>
                         <li><a href="{% url 'pesquisa' %}">Conheça nosso estoque</a></li>
                     </ul>
@@ -320,14 +320,14 @@
                         <li><a href="#">Blog Seminovos</a></li>
                         <li><a href="#">Sobre a Autobots</a></li>
                         <li><a href="#">Programa de Integridade</a></li>
-                        <li><a href="#">Portal de Privacidade</a></li>
+                        <li><a href="{% url 'privacidade' %}">Portal de Privacidade</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-column">
                     <h4>Atendimento</h4>
                     <ul>
-                        <li><a href="#">Dúvidas</a></li>
+                        <li><a href="{% url 'duvidas' %}">Dúvidas</a></li>
                         <li><a href="{% url 'pos_vendas' %}">Canal pós-vendas</a></li>
                     </ul>
                     <br>

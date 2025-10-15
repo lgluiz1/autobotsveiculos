@@ -1,0 +1,133 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/paginas/duvidas.css' %}">
+{% endblock head %}
+{% block content %}
+<div class="faq-container">
+    <header class="faq-header">
+        <h1>Dúvidas Frequentes</h1>
+        <p>Encontre respostas para as perguntas mais comuns.</p>
+        <form class="search-form" action="  " method="get">
+            <input type="search" name="q" placeholder="Busque por palavra-chave. Ex: Financiamento">
+            <button type="submit" aria-label="Buscar"><i class="fas fa-search"></i></button>
+        </form>
+    </header>
+
+    <div class="faq-list">
+        
+        <details class="faq-item">
+            <summary class="faq-question">Onde estão localizadas as lojas da Autobots Veículos?</summary>
+            <div class="faq-answer">
+                <p>Nossas lojas estão estrategicamente localizadas nas principais cidades. Você pode encontrar o endereço de todas as unidades, horários de funcionamento e contatos na nossa página <a href="#">Nossas Lojas</a>.</p>
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary class="faq-question">Posso vender meu usado e comprar um seminovo mais barato?</summary>
+            <div class="faq-answer">
+                <p>Sim! Aceitamos seu veículo usado como parte do pagamento na troca por um de nossos seminovos. Oferecemos uma avaliação justa e transparente para garantir o melhor negócio para você. Faça uma pré-avaliação online ou visite a loja mais próxima.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Como consigo saber em que localidade o veículo se encontra?</summary>
+            <div class="faq-answer">
+                <p>Na página de detalhes de cada veículo em nosso site, você encontrará a informação da loja onde o carro está fisicamente localizado. Você pode filtrar a busca por cidade para ver apenas os veículos disponíveis na sua região.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Quais as formas de pagamento disponíveis?</summary>
+            <div class="faq-answer">
+                <p>Oferecemos diversas opções para facilitar sua compra:</p>
+                <ul>
+                    <li>Financiamento em até 60x com os melhores bancos do mercado.</li>
+                    <li>Pagamento à vista (TED, PIX).</li>
+                    <li>Uso do seu veículo usado como parte do pagamento.</li>
+                    <li>Consórcio (consulte condições).</li>
+                </ul>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Dá para fazer um financiamento do carro? Como funciona? É sem entrada?</summary>
+            <div class="faq-answer">
+                <p>Sim, trabalhamos com as principais financeiras para oferecer as melhores taxas. O processo é simples: você preenche uma proposta online em nosso site, nós realizamos a análise de crédito e retornamos com as opções aprovadas. Temos planos com e sem entrada, dependendo do seu perfil de crédito e do veículo escolhido.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Como funciona o Delivery?</summary>
+            <div class="faq-answer">
+                <p>Oferecemos a comodidade de levar o carro até você para um test-drive ou para a entrega final após a compra. Consulte a disponibilidade do serviço de delivery para a sua localidade com um de nossos consultores.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Como funciona a Garantia Mais?</summary>
+            <div class="faq-answer">
+                <p>A "Garantia Mais" é um serviço opcional de garantia estendida que cobre diversos itens mecânicos e elétricos do veículo por um período maior que a garantia padrão de 90 dias. Ela oferece mais segurança e tranquilidade para sua compra. Peça mais detalhes ao nosso time de vendas.</p>
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary class="faq-question">Existe um canal de contato para esclarecimento de dúvidas?</summary>
+            <div class="faq-answer">
+                <p>Com certeza! Você pode entrar em contato conosco através do nosso chat online, telefone, WhatsApp ou visitando uma de nossas lojas. Além disso, temos o <a href="#">Canal Pós-Vendas</a> para questões relacionadas a transferências, multas e garantias após a compra.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Como funciona a retirada do veículo?</summary>
+            <div class="faq-answer">
+                <p>Após a confirmação do pagamento e a assinatura do contrato, a retirada do veículo é agendada na loja onde ele se encontra. O carro é entregue revisado, limpo e pronto para você rodar.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Como faço as assinaturas do contrato e da documentação?</summary>
+            <div class="faq-answer">
+                <p>Para sua conveniência, oferecemos a opção de assinatura digital do contrato, de forma segura e com validade jurídica. Caso prefira, a assinatura também pode ser feita presencialmente em uma de nossas lojas.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Como é feita a transferência de documentação do carro?</summary>
+            <div class="faq-answer">
+                <p>Nossa equipe cuida de todo o processo burocrático da transferência do veículo para o seu nome. Coletamos os documentos necessários e damos andamento junto ao DETRAN, garantindo agilidade e segurança para você.</p>
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary class="faq-question">Como funciona o processo de indicação de dados no CRV?</summary>
+            <div class="faq-answer">
+                <p>O CRV (Certificado de Registro de Veículo) será preenchido e assinado por nossa equipe para dar início à transferência. Cuidamos de todos os detalhes para que o documento esteja correto e o processo flua sem impedimentos.</p>
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary class="faq-question">Quando receberei o CRV do carro?</summary>
+            <div class="faq-answer">
+                <p>O prazo para a emissão do novo documento (CRLV-e, que unifica o CRV e o licenciamento) em seu nome depende do DETRAN de cada estado. Nossa equipe acompanhará o processo e o manterá informado sobre o andamento.</p>
+            </div>
+        </details>
+
+        <details class="faq-item">
+            <summary class="faq-question">Quais serviços de pós-vendas tenho disponível?</summary>
+            <div class="faq-answer">
+                <p>Nosso pós-vendas está preparado para te auxiliar com documentação, garantia, multas e qualquer outra dúvida que surja após a compra. Visite nossa página do <a href="#">Canal Pós-Vendas</a> para mais informações.</p>
+            </div>
+        </details>
+        
+        <details class="faq-item">
+            <summary class="faq-question">Onde posso opinar sobre a minha experiência de compra?</summary>
+            <div class="faq-answer">
+                <p>Sua opinião é muito importante para nós! Você pode deixar sua avaliação em nossas páginas no Google, redes sociais ou através de pesquisas de satisfação que enviamos após a compra. Seu feedback nos ajuda a melhorar sempre!</p>
+            </div>
+        </details>
+    </div>
+</div>
+
+{% endblock %}

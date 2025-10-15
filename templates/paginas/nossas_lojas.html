@@ -1,0 +1,113 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% comment %}
+    COLE ESTE BLOCO DENTRO DO SEU TEMPLATE, 
+    NO LOCAL ONDE O CONTEÚDO DA PÁGINA DEVE APARECER.
+{% endcomment %}
+{% block title %}Nossas Lojas{% endblock title %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/paginas/nossas_lojas.css' %}">
+{% endblock head %}
+
+
+{% block content %}
+<div class="lojas-container">
+    <header class="lojas-header">
+        <h1>Nossas Lojas</h1>
+        <p>Encontre a loja mais próxima de você.</p>
+    </header>
+
+    <main class="lojas-main-content">
+        <div class="lojas-list-wrapper">
+            <div class="lojas-finder">
+                <h2>Encontre uma loja</h2>
+                <form class="finder-form">
+                    <select name="uf" aria-label="Selecione o Estado">
+                        <option value="">UF</option>
+                        <option value="RJ">RJ</option>
+                        <option value="SP">SP</option>
+                    </select>
+                    <select name="cidade" aria-label="Selecione a Cidade">
+                        <option value="">Cidade</option>
+                        <option value="Rio de Janeiro">Rio de Janeiro</option>
+                        <option value="São Paulo">São Paulo</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="lojas-grid">
+                <article class="loja-card">
+                    <img src="https://placehold.co/600x400/1f1f1f/FFC107?text=Autobots+RJ" alt="Fachada da loja Autobots Veículos em Curicica">
+                    <div class="loja-card-content">
+                        <h3>Autobots - Curicica, RJ</h3>
+                        <p class="phone">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+552140028922">(21) 4002-8922</a>
+                        </p>
+                        <p class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            R. Sd. José Costa, S/N - Lote 22 - Curicica, Rio de Janeiro - RJ, 22780-650
+                        </p>
+                        <div class="loja-card-links">
+                            <a href="https://www.google.com/maps/place/R.+Sd.+José+Costa+-+Curicica,+Rio+de+Janeiro+-+RJ,+22780-650" target="_blank">Ver no mapa <i class="fas fa-arrow-right"></i></a>
+                            <a href="#">Ver carros desta loja <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+                <article class="loja-card">
+                    <img src="https://placehold.co/600x400/1f1f1f/FFC107?text=Autobots+SP" alt="Fachada da loja Autobots Veículos em São Paulo">
+                    <div class="loja-card-content">
+                        <h3>Autobots - Morumbi, SP</h3>
+                        <p class="phone">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+551140028923">(11) 4002-8923</a>
+                        </p>
+                        <p class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Av. Giovanni Gronchi, 5819 - Vila Andrade, São Paulo - SP, 05724-003
+                        </p>
+                        <div class="loja-card-links">
+                            <a href="#" target="_blank">Ver no mapa <i class="fas fa-arrow-right"></i></a>
+                            <a href="#">Ver carros desta loja <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="loja-card">
+                    <img src="https://placehold.co/600x400/1f1f1f/FFC107?text=Autobots+RJ" alt="Fachada da loja Autobots Veículos na Barra da Tijuca">
+                    <div class="loja-card-content">
+                        <h3>Autobots - Barra da Tijuca, RJ</h3>
+                         <p class="phone">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+552140028924">(21) 4002-8924</a>
+                        </p>
+                        <p class="address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Av. das Américas, 4666 - Barra da Tijuca, Rio de Janeiro - RJ, 22640-102
+                        </p>
+                        <div class="loja-card-links">
+                            <a href="#" target="_blank">Ver no mapa <i class="fas fa-arrow-right"></i></a>
+                            <a href="#">Ver carros desta loja <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <aside class="map-wrapper">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.521878847841!2d-43.40795552382101!3d-22.931215438848417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x99611382b6b553%3A0x280e80718e268f76!2sR.%20Sd.%20Jos%C3%A9%20Costa%20-%20Curicica%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2022780-650!5e0!3m2!1spt-BR!2sbr!4v1729022452030!5m2!1spt-BR!2sbr" 
+                width="600" 
+                height="1000" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Mapa com a localização da loja de Curicica">
+            </iframe>
+        </aside>
+    </main>
+</div>
+
+{% endblock %}

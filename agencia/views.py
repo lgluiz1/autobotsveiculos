@@ -88,3 +88,10 @@ def get_modelos_por_marca_home(request, marca_id):
 
 def pos_vendas(request):
     return render(request, 'paginas/pos_vendas.html')
+
+def privacidade(request):
+    return render(request, 'paginas/privacidades.html')
+def duvidas(request):
+    return render(request, 'paginas/duvidas.html')
+def nossas_lojas(request):
+    return render(request, 'paginas/nossas_lojas.html')

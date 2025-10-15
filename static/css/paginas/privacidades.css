@@ -1,0 +1,86 @@
+    .container_privacidade {
+            max-width: 900px; /* Um pouco mais estreito para facilitar a leitura */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* =================================== */
+        /* == ESTILOS DA PÁGINA PRIVACIDADE == */
+        /* =================================== */
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #FFC107; /* Linha de destaque amarela */
+        }
+
+        .privacy-header h1 {
+            font-size: 2.8em;
+            color: #ffffff;
+            margin: 0;
+        }
+        
+        .privacy-header p {
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .privacy-section {
+            margin-bottom: 35px;
+        }
+
+        .privacy-section h2 {
+            font-size: 1.8em;
+            color: #FFC107; /* Títulos de seção em amarelo */
+            border-left: 4px solid #FFC107;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .privacy-section h3 {
+            font-size: 1.2em;
+            color: #ffffff;
+            margin-top: 25px;
+        }
+        
+        .privacy-section p {
+            color: #ccc;
+            text-align: justify;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            padding-left: 15px;
+        }
+        
+        .privacy-section ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .privacy-section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #FFC107; /* Marcadores da lista em amarelo */
+            font-weight: bold;
+        }
+
+        a {
+            color: #FFC107;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+@media (max-width: 767px) {
+    .privacy-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

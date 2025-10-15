@@ -66,3 +66,24 @@ class Endereco(models.Model):
     def __str__(self):
         return f"{self.rua}, {self.cidade} - {self.estado}, {self.cep}"
     
+
+# emails
+class emails(models.Model):
+    email_newletter = models.EmailField(null=True, blank=True)
+    email_contato = models.EmailField(null=True, blank=True)
+    email_duvidas = models.EmailField(null=True, blank=True)
+    email_pos_venda = models.EmailField(null=True, blank=True)
+    email_marketing = models.EmailField(null=True, blank=True)
+
+    email_para_enviar_newletter = models.EmailField(null=True, blank=True)
+    email_para_enviar_contato = models.EmailField(null=True, blank=True)
+    email_para_enviar_duvidas = models.EmailField(null=True, blank=True)
+    email_para_enviar_pos_venda = models.EmailField(null=True, blank=True)
+    email_para_enviar_marketing = models.EmailField(null=True, blank=True)
+
+    def __str__(self):
+        return self.email_contato
+    
+    class Meta:
+        verbose_name = 'Emails'
+        verbose_name_plural = 'Emails'

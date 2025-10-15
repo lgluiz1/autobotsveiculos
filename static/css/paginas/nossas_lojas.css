@@ -1,0 +1,194 @@
+/* =================================== */
+/* ==    ESTILOS PÁGINA DE LOJAS    == */
+/* =================================== */
+
+.lojas-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.lojas-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.lojas-header h1 {
+    font-size: 2.8em;
+    color: #fff;
+    margin: 0 0 5px 0;
+    position: relative;
+    display: inline-block;
+}
+
+/* Linha de destaque amarela */
+.lojas-header h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    height: 4px;
+    width: 60px;
+    background-color: #FFC107;
+}
+
+.lojas-header p {
+    font-size: 1.1em;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.lojas-main-content {
+    display: flex;
+    flex-direction: column; /* Mobile-first: Colunas empilhadas */
+    gap: 40px;
+}
+
+.lojas-list-wrapper {
+    flex: 1;
+}
+
+/* Filtro de Lojas */
+.lojas-finder h2 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.finder-form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.finder-form select {
+    flex: 1;
+    padding: 12px;
+    font-size: 1em;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    border-radius: 5px;
+}
+
+/* Grid de Lojas */
+.lojas-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: uma coluna */
+    gap: 30px;
+}
+
+/* Card Individual da Loja */
+.loja-card {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.loja-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.loja-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.loja-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço restante */
+}
+
+.loja-card-content h3 {
+    font-size: 1.5em;
+    color: #fff;
+    margin: 0 0 15px 0;
+}
+
+.loja-card-content p {
+    color: #ccc;
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.loja-card-content .phone a {
+    color: #FFC107;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.loja-card-content .phone i {
+    color: #FFC107;
+}
+
+.loja-card-links {
+    margin-top: auto; /* Empurra os links para o final do card */
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.loja-card-links a {
+    color: #FFC107;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.loja-card-links a:hover {
+    text-decoration: underline;
+}
+
+/* Coluna do Mapa */
+.map-wrapper {
+    width: 100%;
+    min-height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+}
+
+/* =================================== */
+/* ==  INÍCIO DA RESPONSIVIDADE     == */
+/* =================================== */
+
+/* Telas de Tablet */
+@media (min-width: 768px) {
+    .lojas-grid {
+        grid-template-columns: 1fr 1fr; /* Duas colunas */
+    }
+}
+
+/* Telas de Desktop */
+@media (min-width: 992px) {
+    .lojas-main-content {
+        flex-direction: row; /* Layout lado a lado */
+        align-items: flex-start; /* Alinha os topos */
+    }
+
+    .lojas-list-wrapper {
+        flex: 0 0 65%; /* Ocupa 65% do espaço */
+    }
+
+    .map-wrapper {
+        flex: 1; /* Ocupa o espaço restante */
+        position: sticky; /* Efeito do mapa que "gruda" na tela */
+        top: 20px;
+        min-height: 600px;
+    }
+}
