@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/paginas/pos-vendas.css' %}">
+{% endblock head %}
+{% block content %}
+<div class="container_posvenda">
+
+        <header class="header-posvenda">
+            <h1>Canal Pós-Vendas</h1>
+            <p>
+                Se você ainda está com dúvidas e precisa de ajuda com a compra do seu seminovo, entre em contato com nosso time de vendas. 
+                <a href="#">Garanta aqui!</a>
+            </p>
+        </header>
+
+        <section class="quick-contact-section">
+            <h2>Já é cliente Autobots e precisa de ajuda com <span class="highlight">transferências, multas e garantia?</span></h2>
+            <a href="https://wa.me/{{contatos.telefone}}" class="whatsapp-button" target="_blank">
+                <i class="fab fa-whatsapp"></i> Canal Pós-Vendas
+            </a>
+            <div class="contact-info">
+                <p>Ou ligue: <strong>{{contatos.telefone}}</strong></p>
+                <p>Horário de atendimento: Segunda a sexta, de 8h às 18h.</p>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Se preferir, preencha o formulário abaixo:</h2>
+            <form class="contact-form" action="#" method="POST">
+                
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cpf">CPF</label>
+                    <input type="text" id="cpf" name="cpf" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="state">Estado</label>
+                    <select id="state" name="state" required>
+                        <option value="">Selecione o estado</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Cidade</label>
+                    <select id="city" name="city" required>
+                        <option value="">Selecione a cidade</option>
+                        </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="store">Loja</label>
+                    <select id="store" name="store" required>
+                        <option value="">Selecione a loja</option>
+                        </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="source">Como nos conheceu?</label>
+                    <input type="text" id="source" name="source">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <button type="submit" class="submit-button">ENVIAR</button>
+                </div>
+
+            </form>
+            
+        </section>
+        
+        <footer class="footer-info">
+            <p>A Autobots Veículos com o objetivo de continuar crescendo de forma ética e preservando sua essência, disponibiliza aos seus colaboradores uma ferramenta para relatos de fatos e condutas que não estejam de acordo com os princípios da empresa. A parceria firmada com a Aliant, uma empresa terceirizada, contribuirá para um ambiente de trabalho cada vez mais transparente. Os contatos com o Canal podem ser feitos pelos seguintes meios:</p>
+            <ul>
+                
+                <li>• Envio de e-mail para: <strong>{{contatos.email}}</strong></li>
+                <li>• Pelo telefone: <strong>{{contatos.telefone}}</strong></li>
+            </ul>
+        </footer>
+
+    </div>
+
+{% endblock content %}

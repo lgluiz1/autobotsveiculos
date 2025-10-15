@@ -1,0 +1,195 @@
+/* =================================== */
+        /* == CÓDIGO DO RODAPÉ COMEÇA AQUI == */
+        /* =================================== */
+
+        .site-footer {
+            background-color: #1a1a1a; /* Grafite bem escuro, quase preto */
+            color: #ccc; /* Cinza claro para textos */
+            padding: 50px 0;
+            font-size: 14px;
+        }
+
+        .container-footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Seção de Newsletter */
+        .footer-newsletter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #ffcc00;
+            flex-wrap: wrap; /* Para responsividade */
+        }
+
+        .footer-newsletter h3 {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .footer-newsletter .highlight {
+            color: #ffcc00; /* Amarelo ouro do seu design */
+        }
+        
+        .footer-newsletter form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-newsletter input[type="text"],
+        .footer-newsletter input[type="email"] {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+        }
+
+        .footer-newsletter button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffcc00; /* Amarelo ouro */
+            color: #1a1a1a;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-newsletter button:hover {
+            background-color: #ffda70;
+        }
+
+        /* Seção Principal do Rodapé com Colunas */
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap; /* Permite que as colunas quebrem em telas menores */
+            gap: 30px;
+        }
+
+        .footer-column {
+            flex: 1; /* Faz as colunas se ajustarem */
+            min-width: 180px; /* Largura mínima para cada coluna */
+        }
+
+        .footer-column h4 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #FFC107; /* Efeito hover amarelo */
+        }
+        
+        /* Estilos para botões de contato */
+        .contact-buttons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: opacity 0.3s;
+        }
+        .contact-buttons a:hover {
+            opacity: 0.9;
+        }
+        
+        .phone-button {
+            background-color: #ffcc00; /* Vermelho para telefone */
+            color: black;
+            font-weight: bold;
+            width: 200px;
+        }
+        
+        .whatsapp-button {
+            background-color: #25d366; /* Verde para WhatsApp */
+            color: white;
+            font-size: 1.5em; /* Aumenta o tamanho do ícone */
+            width: 200px;
+        }
+        
+        /* Ícones Sociais */
+        .social-icons a {
+            color: #1a1a1a;
+            background-color: #ccc;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: #ffcc00; /* Efeito hover amarelo */
+        }
+
+        /* Rodapé Final */
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            margin-top: 40px;
+            border-top: 2px solid #ffcc00;
+            font-size: 13px;
+        }
+        
+        .footer-bottom .luiz-tech-credit .heart {
+            color: #ffcc00; /* Coração amarelo */
+        }
+
+        /* Media Query para Responsividade */
+        @media (max-width: 768px) {
+            .footer-main {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-newsletter{
+                flex-direction: column;
+                text-align: center
+            }
+            .footer-newsletter form{
+                flex-direction: column;
+            }
+            .social-icons {
+                margin-top: 10px;
+            }
+            .contact-buttons{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }

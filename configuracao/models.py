@@ -6,8 +6,20 @@ class Logo(models.Model):
 
     def __str__(self):
         return "Logo da Empresa"
-    
 
+class Favicon(models.Model):
+    icon = models.ImageField(upload_to='favicon/', null=True, blank=True)
+    favicon32 = models.ImageField(upload_to='favicon/', null=True, blank=True)
+    favicon16 = models.ImageField(upload_to='favicon/', null=True, blank=True)
+    favicon180 = models.ImageField(upload_to='favicon/', null=True, blank=True)
+
+    def __str__(self):
+        return "Favicon da Empresa"
+class Video(models.Model):
+    video = models.FileField(upload_to='video/', null=True, blank=True)
+
+    def __str__(self):
+        return "Video da Empresa"
 # Menu de navegação
 class Menu(models.Model):
     nome = models.CharField(max_length=100)
@@ -16,12 +28,14 @@ class Menu(models.Model):
         return self.nome
     
 # Redes sociais
-class RedeSocial(models.Model):
-    nome = models.CharField(max_length=100)
-    url = models.URLField()
+class RedeSocial(models.Model):    
+    instagram = models.CharField(max_length=200, null=True, blank=True)
+    facebook = models.CharField(max_length=200, null=True, blank=True)
+    x = models.CharField(max_length=200, null=True, blank=True)
+    youtube = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return self.nome
+        return self.instagram 
 
 # Informações de contato
 class Contato(models.Model):

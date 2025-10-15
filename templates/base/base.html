@@ -6,8 +6,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Autobots Veículos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/menumobile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="icon" type="image/x-icon" href="{{favicon.icon.url}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ favicon.favicon180.url }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon.favicon32.url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ favicon.favicon16.url }}">
     {% block head %}{% endblock head %}
     <style>
         body {
@@ -215,13 +221,7 @@
             font-size: 0.9em;
         }
 
-        footer {
-            background: #000;
-            text-align: center;
-            padding: 20px;
-            border-top: 2px solid #ffcc00;
-            color: #888;
-        }
+
 
         .logo {
             display: flex;
@@ -240,24 +240,23 @@
             z-index: -1;
         }
 
-        footer a {
-            color: #ffcc00;
-            text-decoration: none;
-        }
+
 
         @media (max-width: 768px) {
             .container {
-                margin-top: 50%;
+                margin-top: 40%;
             }
         }
+
         @media (max-width: 500px) {
             .container {
                 margin-top: 50%;
             }
         }
+
         @media (max-width: 480px) {
             .container {
-                margin-top: 130%;
+                margin-top: 60%;
             }
         }
     </style>
@@ -292,8 +291,89 @@
 
     {% block content %}
     {% endblock content %}
-    <footer>
-        © 2025 Autobots Veículos | Desenvolvido com 💛 <a href="#">Luiz.Tech</a>
+    <footer class="site-footer">
+        <div class="container-footer">
+
+            <div class="footer-newsletter">
+                <h3><span class="highlight">Ofertas exclusivas</span> enviadas no seu e-mail:</h3>
+                <form>
+                    <input type="text" placeholder="Nome*">
+                    <input type="email" placeholder="E-mail*">
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+
+            <div class="footer-main">
+                <div class="footer-column">
+                    <h4>Seu veículo</h4>
+                    <ul>
+                        <li><a href="{% url 'pesquisa' %}">Encontre seu veículo</a></li>
+                        <li><a href="#">Nossas Lojas</a></li>
+                        <li><a href="{% url 'pesquisa' %}">Promoções</a></li>
+                        <li><a href="{% url 'pesquisa' %}">Conheça nosso estoque</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Autobots Veículos</h4>
+                    <ul>
+                        <li><a href="#">Blog Seminovos</a></li>
+                        <li><a href="#">Sobre a Autobots</a></li>
+                        <li><a href="#">Programa de Integridade</a></li>
+                        <li><a href="#">Portal de Privacidade</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Atendimento</h4>
+                    <ul>
+                        <li><a href="#">Dúvidas</a></li>
+                        <li><a href="{% url 'pos_vendas' %}">Canal pós-vendas</a></li>
+                    </ul>
+                    <br>
+                    
+                </div>
+
+                <div class="footer-column">
+                    <h4>Atendimento Pós-venda</h4>
+                    <div class="contact-buttons">
+                        <a href="tel:{{contatos.telefone}}" class="phone-button">{{contatos.telefone}}</a>
+                        <a href="https://wa.me/55{{contatos.telefone}}" class="whatsapp-button" target="_blank"><i
+                                class="fab fa-whatsapp"></i> WhatSapp</a>
+                    </div>
+
+                    <h4>Siga a Autobots</h4>
+                    <div class="social-icons">
+                        {% if redesocial.instagram %}
+                        <a href="https://www.instagram.com/{{ redesocial.instagram }}" target="_blank"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        {% endif %}
+
+                        {% if redesocial.facebook %}
+                        <a href="https://www.facebook.com/{{ redesocial.facebook }}" target="_blank"
+                            aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        {% endif %}
+
+                        {% if redesocial.x %}
+                        <a href="https://x.com/{{ redesocial.x }}" target="_blank" aria-label="X (Twitter)"><i
+                                class="fab fa-twitter"></i></a>
+                        {% endif %}
+
+                        {% if redesocial.youtube %}
+                        <a href="https://www.youtube.com/{{ redesocial.youtube }}" target="_blank"
+                            aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Autobots Veículos | Todos os direitos reservados.</p>
+                <p class="luiz-tech-credit">Desenvolvido com <span class="heart">❤</span> Luiz.Tech</p>
+            </div>
+
+        </div>
     </footer>
 </body>
 <script>
@@ -301,6 +381,10 @@
         const nav = document.getElementById('nav-links');
         nav.classList.toggle('show');
     }
+
+
+
 </script>
+
 
 </html>

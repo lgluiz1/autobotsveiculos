@@ -10,29 +10,23 @@
 
         <!-- Marca -->
         <label for="marca">Marca</label>
-        <select id="marca" name="marca" onchange="aplicarFiltro()">
-            <option value="">Todas</option>
-            {% for ma in marcas %}
-                <option value="{{ ma }}" {% if marca_selecionada == ma %}selected{% endif %}>
-                    {{ ma }}
-                </option>
-            {% endfor %}
-        </select>
+        <select id="marca" name="marca" onchange="carregarModelos()" >
+    <option value="">Todas</option>
+    {% for marca in marcas %}
+        <option value="{{ marca.id }}">{{ marca.nome }}</option>
+    {% endfor %}
+</select>
+
 
         <!-- Modelo -->
         <label for="modelo">Modelo</label>
-        <select id="modelo" name="modelo" onchange="aplicarFiltro()">
+        <select id="modelo" name="modelo" >
             <option value="">Todos</option>
-            {% for modelo in modelos %}
-                <option value="{{ modelo }}" {% if modelo_selecionado == modelo %}selected{% endif %}>
-                    {{ modelo }}
-                </option>
-            {% endfor %}
         </select>
 
         <!-- Ano -->
         <label for="ano">Ano</label>
-        <select id="ano" name="ano" onchange="aplicarFiltro()">
+        <select id="ano" name="ano" >
             <option value="">Todos</option>
             {% for ano in anos %}
                 <option value="{{ ano }}" {% if ano_selecionado == ano %}selected{% endif %}>
@@ -48,14 +42,14 @@
         <label for="preco_max">Preço Máximo</label>
         <input class="input_preco" type="number" id="preco_max" name="preco_max" value="{{ preco_max }}" placeholder="Ex: 100000">
 
-        <button onclick="aplicarFiltro()">Aplicar Filtros</button>
+        <button onclick="aplicarFiltro()">Buscar Veículos</button>
         <button onclick="limparFiltros()">Limpar</button>
     </aside>
 
     <main class="lista-veiculos">
         <div class="header-lista">
             <p>Mostrando <span style="color: #ffcc00;">{{ carros|length }}</span> veículos</p>
-            <select id="ordenar" onchange="aplicarFiltro()">
+            <select id="ordenar" >
                 <option value="">Ordenar por</option>
                 <option value="preco_asc" {% if ordenar == 'preco_asc' %}selected{% endif %}>Menor Preço</option>
                 <option value="preco_desc" {% if ordenar == 'preco_desc' %}selected{% endif %}>Maior Preço</option>
@@ -88,28 +82,82 @@
 </section>
 
 <script>
-    function aplicarFiltro() {
-  const marca = document.getElementById('marca').value;
-  const modelo = document.getElementById('modelo').value;
-  const ano = document.getElementById('ano').value;
-  const preco_min = document.getElementById('preco_min').value;
-  const preco_max = document.getElementById('preco_max').value;
-  const ordenar = document.getElementById('ordenar').value;
+function carregarModelos() {
+    const marcaId = document.getElementById('marca').value;
+    const modeloSelect = document.getElementById('modelo');
 
-  let url = `/pesquisa/?`;
+    // Limpa os modelos atuais
+    modeloSelect.innerHTML = '<option value="">Todos</option>';
 
-  if (marca) url += `marca=${marca}&`;
-  if (modelo) url += `modelo=${modelo}&`;
-  if (ano) url += `ano=${ano}&`;
-  if (preco_min) url += `preco_min=${preco_min}&`;
-  if (preco_max) url += `preco_max=${preco_max}&`;
-  if (ordenar) url += `ordenar=${ordenar}`;
+    if (marcaId) {
+        fetch(`/get-modelos/${marcaId}/`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar modelos: ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(modelo => {
+                    const option = document.createElement('option');
+                    option.value = modelo.id;
+                    option.textContent = modelo.nome;
+                    modeloSelect.appendChild(option);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+}
 
-  window.location.href = url;
+
+function carregarModelos() {
+    const marcaId = document.getElementById('marca').value;
+    const modeloSelect = document.getElementById('modelo');
+
+    // Limpa os modelos antigos e coloca a opção padrão
+    modeloSelect.innerHTML = '<option value="">Todos</option>';
+
+    // Se nenhuma marca foi selecionada, não faz nada
+    if (!marcaId) return;
+
+    // Busca os modelos da marca via AJAX (fetch)
+    fetch(`/get-modelos/?marca_id=${marcaId}`)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(modelo => {
+                const option = document.createElement('option');
+                option.value = modelo.id;
+                option.textContent = modelo.nome;
+                modeloSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar modelos:', error));
+}
+
+function aplicarFiltro() {
+    const marca = document.getElementById('marca').value;
+    const modelo = document.getElementById('modelo').value;
+    const ano = document.getElementById('ano').value;
+    const preco_min = document.getElementById('preco_min').value;
+    const preco_max = document.getElementById('preco_max').value;
+    const ordenar = document.getElementById('ordenar').value;
+
+    let url = `/pesquisa/?`;
+
+    if (marca) url += `marca=${marca}&`;
+    if (modelo) url += `modelo=${modelo}&`;
+    if (ano) url += `ano=${ano}&`;
+    if (preco_min) url += `preco_min=${preco_min}&`;
+    if (preco_max) url += `preco_max=${preco_max}&`;
+    if (ordenar) url += `ordenar=${ordenar}`;
+
+    window.location.href = url;
 }
 
 function limparFiltros() {
-  window.location.href = '/pesquisa/';
+    window.location.href = '/pesquisa/';
 }
 </script>
 {% endblock %}
