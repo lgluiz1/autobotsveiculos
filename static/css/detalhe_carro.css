@@ -169,7 +169,25 @@
         font-size: 0.9rem;
         color: #fff;
     }
+.success-message {
+    padding: 20px;
+    background-color: #2a2a2a; /* Cor de fundo escura, mas sutilmente diferente */
+    border: 1px solid #FFC107; /* Borda amarela */
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+}
 
+.success-message h3 {
+    color: #FFC107; /* Amarelo */
+    margin-top: 0;
+}
+
+.success-message p {
+    color: #ccc;
+    font-size: 1em;
+    line-height: 1.6;
+}
     /* ========================= RESPONSIVO ========================= */
     @media (max-width: 960px) {
         .carro-detalhe-container {

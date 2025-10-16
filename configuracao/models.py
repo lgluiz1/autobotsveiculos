@@ -1,4 +1,5 @@
 from django.db import models
+from agencia.models import *
 
 # Logo da empresa
 class Logo(models.Model):
@@ -56,12 +57,14 @@ class Sobre(models.Model):
 
 # endereço da empresa
 class Endereco(models.Model):
+    nome_loja = models.CharField(max_length=100,null=True, blank=True)
     rua = models.CharField(max_length=200,null=True, blank=True)
     numero = models.CharField(max_length=20,null=True, blank=True)
     bairro = models.CharField(max_length=100,null=True, blank=True)
     cidade = models.CharField(max_length=100,null=True, blank=True)
     estado = models.CharField(max_length=100,null=True, blank=True)
     cep = models.CharField(max_length=20,null=True, blank=True)
+    foto_loja = models.ImageField(upload_to='lojas_img/',null=True, blank=True)
 
     def __str__(self):
         return f"{self.rua}, {self.cidade} - {self.estado}, {self.cep}"
@@ -87,3 +90,14 @@ class emails(models.Model):
     class Meta:
         verbose_name = 'Emails'
         verbose_name_plural = 'Emails'
+
+class CarroMaisVisualizados(models.Model):
+    carro = models.ForeignKey('agencia.Carro', on_delete=models.CASCADE)
+    visualizacoes = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.carro} - Visualizações: {self.visualizacoes}"
+    
+    class Meta:
+        verbose_name = 'Carro Mais Visualizados'
+        verbose_name_plural = 'Carros Mais Visualizados'

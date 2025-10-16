@@ -1,0 +1,113 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/paginas/venda.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="venda-container" id="form-wrapper">
+    <header class="venda-header">
+        <h1>Vender meu <span class="highlight">Carro</span></h1>
+        <p>Temos a solução completa para você vender seu carro ganhando mais, garantimos pagamentos 100% seguro e dedicamos um consultor especialista que cuidará da sua venda do começo ao fim.</p>
+    </header>
+
+    <form id="main-form" action="{% url 'enviar_proposta_venda' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>Dados do Veículo</legend>
+            <div class="form-grid">
+                <input type="text" name="marca" placeholder="Marca do Veículo" required>
+                <input type="text" name="modelo" placeholder="Modelo do Veículo" required>
+                <input type="text" name="versao" placeholder="Versão do Veículo" required>
+                <input type="number" name="quilometragem" placeholder="KM do Veículo" required>
+                <input type="number" name="ano" placeholder="Ano do Veículo" required>
+                <input type="text" name="valor_desejado" placeholder="Valor Desejado" required>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <div class="form-grid">
+                <input type="text" name="nome_proprietario" placeholder="Seu Nome" required>
+                <input type="email" name="email_proprietario" placeholder="Seu Email" required>
+                <input type="tel" name="telefone_proprietario" placeholder="Telefone" required>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Fotos do Veículo</legend>
+            <input type="file" name="fotos" id="fotos-input" multiple hidden accept="image/*">
+            
+            <label for="fotos-input" class="upload-button">
+                <i class="fas fa-camera"></i> Adicionar Fotos
+            </label>
+            <div id="file-list-display"></div>
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-button" id="submit-button">Enviar Proposta</button>
+        </div>
+    </form>
+</div>
+<script>
+    // Script para mostrar os nomes dos arquivos selecionados
+    const fotosInput = document.getElementById('fotos-input');
+    const fileListDisplay = document.getElementById('file-list-display');
+
+    if(fotosInput) {
+        fotosInput.addEventListener('change', () => {
+            fileListDisplay.innerHTML = '';
+            if (fotosInput.files.length > 0) {
+                const list = document.createElement('ul');
+                for (const file of fotosInput.files) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = file.name;
+                    list.appendChild(listItem);
+                }
+                fileListDisplay.appendChild(list);
+            }
+        });
+    }
+
+    // Script de submissão do formulário
+    const form = document.getElementById('main-form');
+    const submitButton = document.getElementById('submit-button');
+    const formWrapper = document.getElementById('form-wrapper');
+
+    if (form && submitButton && formWrapper) {
+        const originalButtonHTML = submitButton.innerHTML;
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            submitButton.disabled = true;
+            submitButton.classList.add('loading');
+            submitButton.innerHTML = `<span class="spinner"></span> Enviando...`;
+            
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.ok ? response.json() : Promise.reject(response))
+            .then(data => {
+                const successMessageHTML = `<div class="success-message"><h3>✅ Proposta Enviada!</h3><p>${data.message}</p></div>`;
+                formWrapper.innerHTML = successMessageHTML;
+            })
+            .catch(error => {
+                console.error('Erro na submissão:', error);
+                alert('Ocorreu um erro ao enviar sua proposta. Tente novamente.');
+                submitButton.disabled = false;
+                submitButton.classList.remove('loading');
+                submitButton.innerHTML = originalButtonHTML;
+            });
+        });
+    }
+</script>
+{% endblock content %}
+
+
+
+

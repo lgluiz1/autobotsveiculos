@@ -30,7 +30,8 @@
     <!-- INFO -->
     <div class="carro-info">
         <div class="preco">R$ {{ carro.preco|floatformat:2 }}</div>
-        <form class="form-proposta" method="post" action="">
+        <div id="form-proposta-container">
+        <form class="form-proposta" method="post" action="{% url 'enviar_proposta' carro.id %}">
             {% csrf_token %}
             <input type="text" name="nome" placeholder="Nome" required>
             <input type="email" name="email" placeholder="Email" required>
@@ -38,6 +39,7 @@
             <textarea name="mensagem" rows="4" placeholder="Mensagem"></textarea>
             <button type="submit">Enviar Proposta</button>
         </form>
+        </div>
         <div class="endereco-contato">
             📞 {{ contatos.telefone }}<br>
             📍 {{ endereco.rua }}, {{ endereco.numero }} - {{ endereco.cidade }} / {{ endereco.estado }}
@@ -100,6 +102,55 @@ function mudarImagem(direcao) {
 if (imagens.length > 0) {
   imagens[0].classList.add('active-thumb');
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+        // Seleciona o formulário e seu container
+        const formProposta = document.querySelector('.form-proposta');
+        const formContainer = document.getElementById('form-proposta-container');
+
+        if (formProposta) {
+            formProposta.addEventListener('submit', (event) => {
+                // Impede que a página recarregue
+                event.preventDefault();
+
+                // Coleta os dados do formulário
+                const formData = new FormData(formProposta);
+                const url = formProposta.action;
+
+                // Envia os dados para o backend
+                fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        // O CSRF token é pego automaticamente pelo FormData
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // SE TUDO DEU CERTO:
+                        // Cria a mensagem de sucesso
+                        const successMessageHTML = `
+                            <div class="success-message">
+                                <h3>✅ Proposta Enviada!</h3>
+                                <p>Sua solicitação foi enviada com sucesso. Em breve, um de nossos consultores entrará em contato com você.</p>
+                            </div>
+                        `;
+                        // Substitui o formulário pela mensagem
+                        formContainer.innerHTML = successMessageHTML;
+                    } else {
+                        // Se o backend retornar um erro
+                        alert('Erro: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ocorreu um erro na requisição:', error);
+                    alert('Não foi possível enviar sua proposta. Tente novamente mais tarde.');
+                });
+            });
+        }
+    });
 
 </script>
 

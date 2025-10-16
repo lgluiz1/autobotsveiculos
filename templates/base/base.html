@@ -282,10 +282,10 @@
 
         <!-- Menu de navegação -->
         <nav id="nav-links">
-            <a href="#">Quem Somos</a>
+            <a href="{% url 'sobre' %}">Quem Somos</a>
             <a href="{% url 'pesquisa' %}">Veículos</a>
-            <a href="#">Financiamento</a>
-            <a href="#">Venda seu carro</a>
+            <a href="{% url 'financiamiento' %}">Financiamento</a>
+            <a href="{% url 'venda_seu_carro' %}">Venda seu carro</a>
         </nav>
     </header>
 
@@ -296,11 +296,13 @@
 
             <div class="footer-newsletter">
                 <h3><span class="highlight">Ofertas exclusivas</span> enviadas no seu e-mail:</h3>
-                <form>
-                    <input type="text" placeholder="Nome*">
-                    <input type="email" placeholder="E-mail*">
+                <form id="newsletter-form" action="{% url 'newsletter_subscribe' %}" method="POST">
+                     {% csrf_token %}
+                    <input type="text" id="newsletter-name" name="name" placeholder="Nome*" required>
+                    <input type="email" id="newsletter-email" name="email" placeholder="E-mail*" required>
                     <button type="submit">Cadastrar</button>
                 </form>
+                <div id="newsletter-message" class="newsletter-feedback"></div>
             </div>
 
             <div class="footer-main">
@@ -317,7 +319,7 @@
                 <div class="footer-column">
                     <h4>Autobots Veículos</h4>
                     <ul>
-                        <li><a href="#">Blog Seminovos</a></li>
+                        <li><a href="#">Blog</a></li>
                         <li><a href="#">Sobre a Autobots</a></li>
                         <li><a href="#">Programa de Integridade</a></li>
                         <li><a href="{% url 'privacidade' %}">Portal de Privacidade</a></li>
@@ -382,7 +384,51 @@
         nav.classList.toggle('show');
     }
 
+// static/js/main.js
 
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const newsletterForm = document.getElementById('newsletter-form');
+    const messageDiv = document.getElementById('newsletter-message');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', (event) => {
+            // 1. Impede o recarregamento da página
+            event.preventDefault();
+
+            // 2. Coleta os dados do formulário
+            const formData = new FormData(newsletterForm);
+
+            // 3. Envia os dados para o backend com Fetch
+            fetch(newsletterForm.action, { // A action do form será a URL do Django
+                method: 'POST',
+                body: formData,
+                headers: {
+                    // O CSRF token já está no formData, mas é boa prática enviar no header também se necessário
+                    // 'X-CSRFToken' é pego automaticamente pelo Django a partir do formData
+                }
+            })
+            .then(response => response.json()) // 4. Converte a resposta para JSON
+            .then(data => {
+                // 5. Exibe a mensagem de sucesso ou erro
+                messageDiv.textContent = data.message;
+
+                if (data.status === 'success') {
+                    messageDiv.className = 'newsletter-feedback success'; // Aplica estilo de sucesso
+                    newsletterForm.reset(); // Limpa o formulário
+                } else {
+                    messageDiv.className = 'newsletter-feedback error'; // Aplica estilo de erro
+                }
+            })
+            .catch(error => {
+                // 6. Lida com erros de rede (ex: servidor fora do ar)
+                console.error('Erro na requisição:', error);
+                messageDiv.textContent = 'Ocorreu um erro de conexão. Tente novamente mais tarde.';
+                messageDiv.className = 'newsletter-feedback error';
+            });
+        });
+    }
+});
 
 </script>
 

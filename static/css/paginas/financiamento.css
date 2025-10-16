@@ -1,0 +1,172 @@
+/* =================================== */
+/* ==   ESTILOS PÁGINA FINANCIAMENTO  == */
+/* =================================== */
+
+.financiamento-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.financiamento-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.financiamento-header h1 {
+    font-size: 2.8em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.financiamento-header p {
+    font-size: 1.1em;
+    color: #ccc;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.financiamento-form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 60px 0;
+    border-top: 1px solid #444;
+}
+
+.financiamento-form legend {
+    padding: 10px 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #FFC107; /* Amarelo ouro */
+    background-color: #1f1f1f;
+    border-radius: 5px;
+    margin-left: 20px; /* Alinhamento com os inputs */
+    transform: translateY(-50%);
+}
+
+/* Grid para os campos do formulário */
+.form-grid {
+    display: grid;
+    /* Mobile-first: uma coluna por padrão */
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    color: #e0e0e0;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #FFC107; /* Borda amarela ao focar */
+}
+
+/* Ações do formulário (reCAPTCHA e botão) */
+.form-actions {
+    display: flex;
+    flex-direction: column; /* Empilhado em mobile */
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.submit-button {
+    background-color: #FFC107;
+    color: #121212;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa toda a largura em mobile */
+}
+
+.submit-button:hover {
+    background-color: #ffda70;
+}
+
+/* =================================== */
+/* ==  INÍCIO DA RESPONSIVIDADE     == */
+/* =================================== */
+
+/* Telas de Tablet */
+@media (min-width: 768px) {
+    .form-grid {
+        /* Duas colunas em tablets */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .form-group.span-2 { grid-column: span 2; }
+
+    .form-actions {
+        flex-direction: row; /* Lado a lado em telas maiores */
+    }
+    .submit-button {
+        width: auto; /* Largura automática */
+    }
+}
+
+/* Telas de Desktop */
+@media (min-width: 1024px) {
+    .form-grid {
+        /* Três colunas em desktops */
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .form-group.span-2 { grid-column: span 2; }
+    .form-group.span-3 { grid-column: span 3; }
+}
+/* Estilo para o botão durante o loading */
+.submit-button.loading {
+    cursor: wait; /* Muda o cursor do mouse */
+    background-color: #4a4a4a; /* Cor mais escura para indicar desativado */
+    color: #999;
+}
+
+/* Spinner de loading (CSS puro) */
+.spinner {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #FFC107; /* Cor de destaque amarela */
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 767px) {
+    .financiamento-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
